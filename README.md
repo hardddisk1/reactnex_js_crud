@@ -51,7 +51,7 @@ Visit the app at http://localhost:3000
 - DELETE /api/users/:id — Delete user
 
 ## Folder Structure
-
+<pre>
 my-next-app/
 ├── app/
 │   ├── api/
@@ -77,6 +77,7 @@ my-next-app/
 ├── package.json
 ├── tsconfig.json
 └── README.md
+   </pre>
 
 ## Docker Setup
 
