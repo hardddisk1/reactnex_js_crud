@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Box,
@@ -16,6 +16,11 @@ export default function LoginPage() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
+  // Delay any logs or effects that rely on browser
+  useEffect(() => {
+    console.log('📦 Login page loaded');
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -23,8 +28,6 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
-    console.log('🔐 Attempting login with:', formData);
 
     try {
       const res = await fetch('/api/login', {
@@ -34,14 +37,13 @@ export default function LoginPage() {
       });
 
       const data = await res.json();
-      console.log('🔄 Login response:', data);
 
       if (!res.ok) {
         throw new Error(data.error || 'Login failed');
       }
 
-      // TODO: store session or token if needed
-      router.push('/users'); // Redirect after successful login
+      // Optionally store auth/token here
+      router.push('/users');
     } catch (err: any) {
       console.error('❌ Login error:', err.message);
       setError(err.message);
