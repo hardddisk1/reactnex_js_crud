@@ -1,7 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import {
   Box,
   Button,
@@ -10,13 +8,14 @@ import {
   Typography,
   Alert,
 } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
-  // Delay any logs or effects that rely on browser
   useEffect(() => {
     console.log('📦 Login page loaded');
   }, []);
@@ -42,10 +41,9 @@ export default function LoginPage() {
         throw new Error(data.error || 'Login failed');
       }
 
-      // Optionally store auth/token here
       router.push('/users');
     } catch (err: any) {
-      console.error('❌ Login error:', err.message);
+      console.error('Login error:', err.message);
       setError(err.message);
     }
   };

@@ -20,7 +20,7 @@ import {
   Tabs,
   Tab,
 } from '@mui/material';
-import { defineAbilitiesFor } from '../../casl/ability'; // Adjust if needed
+import { defineAbilitiesFor } from '../../casl/ability';
 
 interface User {
   id: number;
@@ -39,7 +39,6 @@ export default function UsersPage() {
   const [editedUser, setEditedUser] = useState<Partial<User>>({});
   const [tabIndex, setTabIndex] = useState(0);
 
-  // Simulated current user
   const currentUser = { role: 'admin' };
   const ability = useMemo(() => defineAbilitiesFor(currentUser.role), [currentUser.role]);
 
@@ -76,11 +75,11 @@ export default function UsersPage() {
     setTabIndex(newValue);
   };
 
-const filteredUsers = users.filter((user) =>
-  tabIndex === 0
-    ? user.role.toLowerCase() === 'standard'
-    : user.role.toLowerCase() === 'admin'
-);
+  const filteredUsers = users.filter((user) =>
+    tabIndex === 0
+      ? user.role.toLowerCase() === 'standard'
+      : user.role.toLowerCase() === 'admin'
+  );
 
   async function handleDelete(user: User): Promise<void> {
     const { id, firstname, lastname } = user;
@@ -211,11 +210,7 @@ const filteredUsers = users.filter((user) =>
                   <TableCell>
                     {editingUserId === user.id ? (
                       <>
-                        <Button
-                          color="primary"
-                          onClick={() => saveUser(user.id)}
-                          size="small"
-                        >
+                        <Button color="primary" onClick={() => saveUser(user.id)} size="small">
                           Save
                         </Button>
                         <Button onClick={() => setEditingUserId(null)} size="small">
@@ -226,19 +221,15 @@ const filteredUsers = users.filter((user) =>
                       <>
                         <Button
                           onClick={() => {
-                            setEditingUserId(user.id);
                             setEditedUser(user);
+                            setEditingUserId(user.id);
                           }}
                           size="small"
                         >
                           Edit
                         </Button>
                         {ability.can('delete', 'User') && (
-                          <Button
-                            color="error"
-                            onClick={() => handleDelete(user)}
-                            size="small"
-                          >
+                          <Button color="error" onClick={() => handleDelete(user)} size="small">
                             Delete
                           </Button>
                         )}
