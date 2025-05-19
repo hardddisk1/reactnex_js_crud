@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import MuiThemeProvider from "./theme-provider"; // ✅ add this line
+import MuiThemeProvider from "./theme-provider";
+import AspectRatioBox from "../app/components/AspectRatioBox"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +29,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MuiThemeProvider> {/* ✅ wrap your children in theme provider */}
-          {children}
+        <MuiThemeProvider>
+          <AspectRatioBox ratio="4/3"> {}
+            {children}
+          </AspectRatioBox>
         </MuiThemeProvider>
       </body>
     </html>
