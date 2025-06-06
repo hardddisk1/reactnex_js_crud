@@ -260,7 +260,7 @@ export default function UsersPage() {
                     <YAxis yAxisId="right" orientation="right" domain={[0, 100]} tickFormatter={(val) => `${val}%`} />
                     <Tooltip />
                     <Legend />
-                    <Bar yAxisId="left" dataKey="baseline" barSize={40} fill="#3CB371" />
+                    <Bar yAxisId="left" dataKey="baseline" barSize={50} fill="#3CB371" />
                     <Line yAxisId="left" type="monotone" dataKey="standard" stroke="#8884d8" strokeWidth={2} dot={{ r: 4 }} name="Standard Users" />
                     <Line yAxisId="right" type="monotone" dataKey="admin" stroke="#FF0000" strokeWidth={2} dot={{ r: 4 }} name="Admin Users (%)" />
                   </ComposedChart>
